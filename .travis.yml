@@ -8,7 +8,7 @@ install:
   - pip install -r requirements.txt
 script:
   - pytest
-  - docker build -t cadueceus:latest .
+  - docker build -t caduceus:latest .
   - docker images
 deploy:
   provider: script
