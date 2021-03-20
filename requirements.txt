@@ -10,3 +10,4 @@ py==1.10.0
 pymongo==3.11.3
 pytest==6.2.2
 Werkzeug==1.0.1
+cryptography
