@@ -3,23 +3,15 @@
 {%block content%}
 <div class="container">
     <div class="title"><span>Login</span></div>
-    <form action="">
-        <div class="row">
-            <img class = "icon" src="https://img.icons8.com/ios/50/000000/user-male-circle.png"/>
-            <input required autofocus type="text" autocomplete="off" name="email" placeholder="Email (e.g. foo@bar.com)"> 
+    <form action="/login" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email (e.g. foo@bar.com)" type="email">
         </div>
-        <div class = "row">
-            <img class = "icon" src="https://img.icons8.com/ios/50/000000/lock.png"/>
-            <input required autofocus type="password" autocomplete="off" name="password" placeholder="Password">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password">
         </div>
-        <div class="row">
-            <img class = "icon" src="https://img.icons8.com/ios/50/000000/check-lock.png"/>
-            <input required autofocus type="password" autocomplete="off" name="confirmpassword" placeholder="Confirm Password">
-        </div>
-        <div class="row">
-            <input type="submit">
-        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
     </form>
 </div>
-
 {%endblock%}
