@@ -1,7 +1,41 @@
 {%extends "lbase.html"%}
 {%block title%}Dashboard{%endblock%}
 {%block content%}
-    <h1>Hello from the dashboard</h1>
+    <h1></h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Last Visit</th>
+                <th scope="col">Next Scheduled visit</th>
+                <th scope="col">Notes</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form method = "POST">
+                    <td></td>
+                    <td><input name="name" type="text" placeholder="Name of Patient"/></td>
+                    <td><input name="LastVisit" type="text" placeholder="Last Visit"/></td>
+                    <td><input name="NextVisit" type="text" placeholder="Next Scheduled Visit"/></td>
+                    <td><input name="notes" type="text" placeholder="Notes"/></td>
+                    <td><button class="danger" type="submit">Submit</button></td>
+                </form>
+            </tr>
+            {%for document in patientdata%}
+                <tr>
+                    <th scope="row">{{document["_id"]}}</th>
+                    <td>{{document["name"]}}</td>
+                    <td>{{document["LastVisit"]}}</td>
+                    <td>{{document["NextVisit"]}}</td>
+                    <td>{{document["notes"]}}</td>
+                    <td><a href = "/edit/{{document['_id']}}"><button >Edit</button></a></td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
 
 
 

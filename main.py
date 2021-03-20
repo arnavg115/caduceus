@@ -76,13 +76,69 @@ def signup():
 def dashboard():
     if "email" not in session and "key" not in session:
         return redirect(url_for("login"))
-    return render_template("dashboard.html")
+    hospdb = client.db[session["email"]]
+    
+
+    if request.method == "GET":
+        allpatients = list(hospdb.find({}))
+        decryptedallpatients = []
+        for document in allpatients:
+            decdoc = {}
+            for index in document:
+                encrypted = document[index]
+                if index != "_id":
+                    decrypted = encryption.decrypt(session["key"],encrypted)
+                    decdoc[index] = decrypted
+                else:
+                    decdoc[index] = encrypted
+            decryptedallpatients.append(decdoc)
+        return render_template("dashboard.html",patientdata = decryptedallpatients)
+    elif request.method == "POST":
+        formdata = request.form 
+        patient = {}
+        for key in formdata:
+            currententry = formdata[key]
+            encryptedentry = encryption.encrypt(session["key"],currententry)
+            patient[key] = encryptedentry
+        patient["_id"] = random.randint(1000000,999999999)
+        hospdb.insert_one(patient)
+        return redirect(url_for("dashboard"))
+        
 @app.route("/logout")
 def logout():
     if "email" in session and "key" in session:
         session.pop("email")
         session.pop("key")
     return redirect(url_for("login"))
+@app.route("/edit/<id>", methods = ["GET","POST"])
+def edit(id):
+    if "email" not in session and "key" not in session:
+        return redirect(url_for("login"))
+    hospdb = client.db[session["email"]]
+    id = int(id)
+    if request.method == "GET":
+        alldata = {}
+        currentpatient = hospdb.find_one({"_id":id})
+        if currentpatient == None:
+            return redirect(url_for("dashboard"))
+        del currentpatient["_id"]
+        for key in currentpatient:
+            currentencrypted = currentpatient[key]
+            decrypted = encryption.decrypt(session["key"],currentencrypted)
+            alldata[key] = decrypted
+        return render_template("edit.html",patientdata = alldata)
+    elif request.method == "POST":
+        formdata = request.form
+        encrypteddata = {}
+        for key in formdata:
+            unencdata = formdata[key]
+            encdata = encryption.encrypt(session["key"],unencdata)
+            encrypteddata[key] = encdata
+        hospdb.update_one({"_id":id},{"$set":encrypteddata})
+        return redirect(url_for("dashboard"))
+
+
+
 
 if __name__ == "__main__":
     app.run(port=5000,host="0.0.0.0",debug=True)

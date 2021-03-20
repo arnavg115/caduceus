@@ -1,0 +1,30 @@
+{%extends "lbase.html"%}
+{%block title%}Edit{%endblock%}
+
+{%block content%}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Last Visit</th>
+                <th scope="col">Next Scheduled visit</th>
+                <th scope="col">Notes</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form method = "POST">
+                    <td><input name="name" type="text" value='{{patientdata["name"]}}'/></td>
+                    <td><input name="LastVisit" type="text"  value='{{patientdata["LastVisit"]}}'/></td>
+                    <td><input name="NextVisit" type="text"  value="{{patientdata['NextVisit']}}"/></td>
+                    <td><input name="notes" type="text" value="{{patientdata['notes']}}"/></td>
+                    <td><button type="submit" class="btn btn-outline-success">Submit</button></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+
+{%endblock%}
