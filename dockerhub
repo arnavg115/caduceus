@@ -1,0 +1,3 @@
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker tag cadueceus arnavg1q5/travispract:latest
+docker push arnavg1q5/cadueceus

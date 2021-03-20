@@ -1,7 +1,7 @@
 FROM python:3.7
 
 RUN pip install --upgrade virtualenv
-ENV MONGO=$MONGO
+ENV MONGO=${MONGO}
 ENV VIRTUAL_ENV=/venv
 RUN virtualenv venv -p python3 
 WORKDIR /app

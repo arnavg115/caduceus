@@ -9,22 +9,11 @@
         </div>
 
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password">
+            <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password"></input>
+            <button class="btn btn btn-outline-secondary btn-sm" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
         </div>
+
         <button class="btn btn-primary" type="submit">Log In</button>
     </form>
-    <button onclick="view()">Show Password</button>
-    <script>
-        function view(){
-            var input = document.getElementsByName("password");
-            input = input[0]
-            if (input.type === "password"){
-                input.type = "text"
-            }
-            else{
-                input.type = "password"
-            }
-}
-    </script>
 </div>
 {%endblock%}

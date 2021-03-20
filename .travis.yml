@@ -1,4 +1,6 @@
 language: python
+services:
+  - docker
 python:
   - "3.6"
   - "3.7"
@@ -6,3 +8,8 @@ install:
   - pip install -r requirements.txt
 script:
   - pytest
+  - docker build -t cadueceus:latest .
+  - docker images
+deploy:
+  provider: script
+  script: bash dockerhub

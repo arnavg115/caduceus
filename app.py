@@ -47,7 +47,6 @@ def login():
             return render_template("login.html")
 
 @app.route("/signup",methods = ["POST","GET"])
-@login_required
 def signup():
 
         if request.method == "GET":
