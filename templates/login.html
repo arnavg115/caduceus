@@ -13,5 +13,18 @@
         </div>
         <button class="btn btn-primary" type="submit">Log In</button>
     </form>
+    <button onclick="view()">Show Password</button>
+    <script>
+        function view(){
+            var input = document.getElementsByName("password");
+            input = input[0]
+            if (input.type === "password"){
+                input.type = "text"
+            }
+            else{
+                input.type = "password"
+            }
+}
+    </script>
 </div>
 {%endblock%}

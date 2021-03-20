@@ -3,16 +3,3 @@ html
     font-family: 'Noto Sans', sans-serif;
     color: #F50057;
 }
-
-.container
-{
-    display: inline-block;
-    width: auto;
-    display: grid;
-    margin: 0;
-    box-sizing: border-box;
-    padding: 0;
-    align-items: start;
-    justify-items: center;
-    height: 100%;
-}

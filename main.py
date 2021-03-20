@@ -15,14 +15,31 @@ def main():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if "email" in session and "key" in session:
+        return redirect(url_for("dashboard"))
     if request.method == "POST":
-        return "form submitted"
+        formdata = request.form 
+        form = {}
+        for key in formdata:
+            form[key] = formdata[key]
+        email = form["email"]
+        user = db.find_one({"email":email})
+        if user == None:
+            return render_template("login.html")
+        storedpw = user["password"]
+        givenpw = form["password"]
+        salt = user["salt"]
+        if bcrypt.checkpw(givenpw.encode(),storedpw):
+            session["key"] = encryption.getKey(givenpw,salt)
+            session["email"] = email
+            return redirect(url_for("dashboard"))
+        return render_template("login.html")
     else:
         return render_template("login.html")
 
 @app.route("/signup",methods = ["POST","GET"])
 def signup():
-    if "email" in session:
+    if "email" in session and "key" in session:
         return redirect(url_for("dashboard"))
     if request.method == "GET":
             return render_template("signup.html")
@@ -57,6 +74,8 @@ def signup():
 
 @app.route("/dashboard",methods = ["GET", "POST"])
 def dashboard():
+    if "email" not in session and "key" not in session:
+        return redirect(url_for("login"))
     return render_template("dashboard.html")
 @app.route("/logout")
 def logout():
