@@ -6,15 +6,23 @@
         <img src="static/login.png" width="300px" height="300px" alt="Login" style="user-select: none;">
     </div>
     <form action="/login" method="post">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email (e.g. foo@bar.com)" type="email">
-        </div>
+        </div> -->
 
         <!-- <div class="form-group">
             <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password"></input>
             <button class="btn btn btn-outline-secondary btn-sm" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
         </div> -->
+
         <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+            </div>
+            <input type="text" class="form-control" placeholder="foo@bar.com" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
             <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
@@ -22,7 +30,7 @@
         </div>
         
 
-        <button class="btn btn-primary" type="submit">Log In</button>
+        <button class="btn btn-primary" style="background-color: #F50057" type="submit">Log In</button>
     </form>
 </div>
 {%endblock%}
