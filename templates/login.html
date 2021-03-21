@@ -1,5 +1,5 @@
 {%extends "base.html"%}
-{%block title%}Login{%endblock%}
+{%block title%}Caduceus: Login{%endblock%}
 {%block content%}
 <div class="container">
     <div class="text-center">
@@ -15,21 +15,32 @@
             <button class="btn btn btn-outline-secondary btn-sm" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
         </div> -->
 
-        <div class="too-long-forms form-group input-group mb-3">
+        <div class="form-group input-group mb-3" width="50px">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Email</span>
             </div>
-            <input type="text" class="too-long-forms form-control" placeholder="foo@bar.com" aria-label="Username" aria-describedby="basic-addon1">
+            <input autocomplete="off" autofocus type="email" class="form-control" placeholder="foo@bar.com" size="50S" aria-label="Username" aria-describedby="basic-addon1" name="email">
         </div>
 
         <div class="input-group mb-3">
-            <input type="password" class="too-long-forms form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon2">
+            <input type="password" class="too-long-forms form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon2" id ="password" name="password">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
             </div>
         </div>   
 
-        <button class="btn btn-danger" id="submit_btn" style="background-color: #F50057; outline: none;" type="submit">Log In</button>
+        <button class="btn btn-danger" id="submit_btn" size="10" style="background-color: #F50057;outline: none;" type="submit">Log In</button>
     </form>
+    <script>
+        function view(){
+            var input = document.getElementById("password");
+            if (input.type === "password"){
+                input.type = "text"
+            }
+            else{
+                input.type = "password"
+            }
+    }
+    </script>
 </div>
 {%endblock%}

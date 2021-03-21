@@ -1,14 +1,35 @@
 {%extends "base.html"%}
-{%block title%}Sign Up{%endblock%}
+{%block title%}Caduceus: Register{%endblock%}
 {%block content%}
     
     <form method="POST">
-        <input type="email" name="email" required placeholder="Email"/>
-        <input type="password" required name= password placeholder="Password" id="password1"/>
-        <input type="password" name= "password2"required placeholder="Confirm Password" id="password2"/>
-        <button type="submit">Submit</button>
+        <div class="text-center">
+            <img src="static/register.png" alt="Login" style="user-select: none; max-height: 300px;" class="img-fluid">
+        </div>
+
+        <!-- <input type="email" name="email" required placeholder="Email"/> -->
+        <div class="form-group input-group mb-3" width="50px">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+            </div>
+            <input autocomplete="off" required autofocus type="email" class="form-control" placeholder="foo@bar.com" size="50" aria-label="" aria-describedby="basic-addon1" name="email">
+        </div>
+
+        <!-- <input type="password" required name= password placeholder="Password" id="password1"/> -->
+        <div class="input-group mb-3">
+            <input required type="password" class="too-long-forms form-control" placeholder="Password" aria-label="Password" aria-describedby="button-addon2" id ="password1" name="password">
+        </div>  
+        
+        <!-- <input type="password" name= "password2" required placeholder="Confirm Password" id="password2"/> -->
+        <div class="input-group mb-3">
+            <input type="password" class="too-long-forms form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="button-addon2" id ="password2" name="password2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" type="button" onclick="view()"><img src="https://img.icons8.com/fluent-systems-filled/24/000000/visible.png"/></button>
+            </div>
+        </div>
+        <button class="btn btn-danger" id="submit_btn" size="10" style="background-color: #F50057;outline: none;" type="submit">Register</button>
     </form>
-    <button onclick="view()">Show Password</button>
+    <!-- <button onclick="view()">Show Password</button> -->
     <script>
         function view(){
             var input = document.getElementById("password1");
@@ -22,5 +43,8 @@
                 input2.type = "password"
             }
 }
+    </script>
+    <script>
+        
     </script>
 {%endblock%}
